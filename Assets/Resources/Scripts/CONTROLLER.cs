@@ -222,10 +222,7 @@ public class CONTROLLER : MonoBehaviour {
             SetHooked(true, col.transform);            
         }
 
-        if (col.tag == "Gravity")
-        {
-            rigid.AddForce(col.gameObject.GetComponent<Device>().GetDirection());
-        }        
+             
 
     }
 
@@ -236,6 +233,11 @@ public class CONTROLLER : MonoBehaviour {
             Vector2 dir = transform.position - col.gameObject.transform.position;
             Debug.Log("Pulling Ball");
             rigid.AddForce(dir * -25.0f);
+        }
+
+        if (col.tag == "Gravity")
+        {
+            rigid.AddForce(col.gameObject.GetComponent<Device>().GetDirection());
         }
 
     }

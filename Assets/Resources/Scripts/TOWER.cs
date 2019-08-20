@@ -64,7 +64,7 @@ public class TOWER : MonoBehaviour {
 
         if (hasTransmitted && dm)
         {
-            sprite.color = Color.blue;
+            sprite.color = Color.Lerp(inactiveColor, Color.blue, signalDuration / 30);
             dm.DeviceTrigger(true);
         }
         
@@ -75,7 +75,7 @@ public class TOWER : MonoBehaviour {
 
         else if (!hasTransmitted && dm)
         {
-            sprite.color = new Color (35, 35, 35, 1.0f);
+            sprite.color = inactiveColor;
             dm.DeviceTrigger(false);
         }
 
