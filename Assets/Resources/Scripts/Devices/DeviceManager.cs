@@ -18,9 +18,7 @@ public class DeviceManager : MonoBehaviour {
             case false:
                 contraption.Deactivate();                
                 break;
-
         }
-
     }
 	
 

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class MenuManager : MonoBehaviour
 {
@@ -58,6 +59,11 @@ public class MenuManager : MonoBehaviour
         navContainer_levels[index - 1].SetActive(true);
 
         navIndex_levelSelect = index;
+    }
+
+    public void NAV_LoadLevel(int index)
+    {
+        SceneManager.LoadScene(index, LoadSceneMode.Single);
     }
 
 }

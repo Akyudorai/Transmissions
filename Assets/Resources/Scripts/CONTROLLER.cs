@@ -17,7 +17,7 @@ public class CONTROLLER : MonoBehaviour {
     [Range(0.0f, 1.0f)] private float opacity = 1.0f;
 
     [Header("Hooked Tower")]
-    [SerializeField] TOWER linkedTower;
+    [SerializeField] Tower linkedTower;
 
 
     [SerializeField]
@@ -57,7 +57,7 @@ public class CONTROLLER : MonoBehaviour {
         // Change Opacity of ball as the strength of the signal fades
         sprite.color = new Color(255, 255, 255, opacity);
 
-        if (!_GM.pauseGame)
+        if (!GameManager.pauseGame)
         {
             if (isHooked)
             {
@@ -101,13 +101,12 @@ public class CONTROLLER : MonoBehaviour {
                 if (direction.y > 15.0f) direction.y = 15.0f;
                 else if (direction.y < -15.0f) direction.y = -15.0f;
 
-                rigid.AddForce(direction, ForceMode2D.Impulse); // Apply a force equal to the direction vector
-                GameObject.Find("_GM").GetComponent<_GM>().AddShot();
-
+                rigid.AddForce(direction, ForceMode2D.Impulse); // Apply a force equal to the direction vector                
+                GameManager.GetInstance().stats.shotsTaken++;
 
                 isDrag = false; // Set drag to false
                 shotPower = 0.0f; // Reset the shot power
-                linkedTower.Unhook(); // Unhook the ball and set the signal fade timer;
+                linkedTower.Unlink(); // Unhook the ball and set the signal fade timer;
                 line.enabled = false;
                 canShot = false;
             }
@@ -167,11 +166,11 @@ public class CONTROLLER : MonoBehaviour {
         rigid.gravityScale = 0.0f;
 
         // Transmit Data       
-        if (point.gameObject.GetComponentInParent<TOWER>())
+        if (point.gameObject.GetComponentInParent<Tower>())
         {
-            linkedTower = point.gameObject.GetComponentInParent<TOWER>();
-            linkedTower.setTransmission(true);
-            linkedTower.Hook();
+            linkedTower = point.gameObject.GetComponentInParent<Tower>();
+            linkedTower.SetTransmission(true);
+            linkedTower.Link();
         }
             
 
@@ -237,7 +236,7 @@ public class CONTROLLER : MonoBehaviour {
 
         if (col.tag == "Gravity")
         {
-            rigid.AddForce(col.gameObject.GetComponent<Device>().GetDirection());
+            rigid.AddForce(col.gameObject.GetComponent<GravityStream>().GetDirection());
         }
 
     }
