@@ -98,6 +98,4 @@ public abstract class Tower : MonoBehaviour
 
     public abstract Color GetActiveColor();
     public abstract Color GetInactiveColor();    
-    public abstract string GetTowerType();
-    
 }
