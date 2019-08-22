@@ -36,4 +36,9 @@ public class RelayTower : Tower
     {
         return inactiveColor;
     }
+
+    public override string GetTowerType()
+    {
+        return "Relay";
+    }
 }

@@ -52,4 +52,9 @@ public class LinkedTower : Tower
     {
         return inactiveColor;
     }
+
+    public override string GetTowerType()
+    {
+        return "Linked";
+    }
 }

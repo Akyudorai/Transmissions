@@ -5,8 +5,8 @@ using UnityEngine;
 public class Doorway : Device
 {
     [Header("Door Components")]
-    [SerializeField] Vector3 point1 = Vector2.zero;
-    [SerializeField] Vector3 point2 = Vector2.zero;  // p1 = open; p2 = close
+    [SerializeField] Transform point1 = null;
+    [SerializeField] Transform point2 = null;  // p1 = open; p2 = close
     //Vector3 openSpeed = Vector3.zero;
     //Vector3 closeSpeed = Vector3.zero;
     
@@ -27,22 +27,22 @@ public class Doorway : Device
         if (state)
         {
             //gameObject.transform.position += openSpeed;
-            gameObject.transform.position = point2;            
+            gameObject.transform.position = point2.position;            
         }
 
         if (!state)
         {
             //gameObject.transform.position += closeSpeed;
-            gameObject.transform.position = point1;
+            gameObject.transform.position = point1.position;
         }
 
         yield return new WaitForSeconds(0.1f);
 
-        if (!state && gameObject.transform.position.y > point2.y)
-            StartCoroutine(OpenDoor(false));
+        //if (!state && gameObject.transform.position.y > point2.position.y)
+        //    StartCoroutine(OpenDoor(false));
 
-        if (state && gameObject.transform.position.y < point1.y)
-            StartCoroutine(OpenDoor(true));
+        //if (state && gameObject.transform.position.y < point1.position.y)
+        //    StartCoroutine(OpenDoor(true));
         
     }
 
