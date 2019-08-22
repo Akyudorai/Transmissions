@@ -25,4 +25,9 @@ public class MainTower : Tower
     {
         return inactiveColor;
     }
+
+    public override string GetTowerType()
+    {
+        return "Main";
+    }
 }

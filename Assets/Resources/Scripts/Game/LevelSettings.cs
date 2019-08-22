@@ -12,6 +12,8 @@ public class LevelSettings : MonoBehaviour
 
     [Header("Components")]
     public List<Tower> towers = null;
+    public List<GameObject> walls = null;
+    public List<Device> devices = null;
 
     [Header("Canvas")]
     public Canvas canvas_UI;
