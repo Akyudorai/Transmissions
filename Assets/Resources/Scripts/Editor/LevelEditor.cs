@@ -49,7 +49,10 @@ public class LevelEditor : EditorWindow
 
     private void OnGUI ()
     {
-
+        if (level == null)
+        {
+            Load();
+        }
 
         // -------------------------------------------------------------------
         //                      o Initialization o
