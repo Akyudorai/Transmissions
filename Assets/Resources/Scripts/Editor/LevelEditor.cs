@@ -3,6 +3,7 @@ using UnityEditor;
 
 using System.Collections.Generic;
 using UnityEditor.SceneManagement;
+using UnityEditor.Experimental.SceneManagement;
 
 public class LevelEditor : EditorWindow
 {
@@ -62,6 +63,7 @@ public class LevelEditor : EditorWindow
 
         if (GUILayout.Button("Reload"))
         {
+            //EditorCallback.onSceneChanged += Load;
             Load();
         }
 
@@ -129,16 +131,23 @@ public class LevelEditor : EditorWindow
                         }
 
                         mainTower = true;
-                    }
+                    }                    
+                    
+                    //GameObject tower = Instantiate(Resources.Load("Prefabs/" + towerList[towerIndex]), Vector3.zero, Quaternion.identity) as GameObject;
+                    GameObject tower = PrefabUtility.InstantiatePrefab(Resources.Load("Prefabs/" + towerList[towerIndex])) as GameObject;
 
-                    GameObject tower = Instantiate(Resources.Load("Prefabs/" + towerList[towerIndex]), Vector3.zero, Quaternion.identity) as GameObject;
+                    // PROBLEM START
 
                     if (mainTower)
                         level.towers.Insert(0, tower.GetComponent<Tower>());
                     else
+                    {                       
                         level.towers.Add(tower.GetComponent<Tower>());
+                    }
 
-                    Save();
+                    // PROBLEM END
+
+                    Save();                    
                 }
             }
             
